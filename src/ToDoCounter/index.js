@@ -1,12 +1,7 @@
 import React from 'react';
-import { ToDoContext } from '../ToDoContext';
 import './ToDoCounter.css';                                             
 
-function ToDoCounter() {                                                                          // Destructuramos la importacion de los 'props', 'props' es un Objeto que tiene distintas propiedades
-  const {
-    completedToDos,
-    totalToDos,
-  } = React.useContext(ToDoContext);
+function ToDoCounter({ completedToDos, totalToDos }) {                                                                          // Destructuramos la importacion de los 'props', 'props' es un Objeto que tiene distintas propiedades
 
   const progressPercent = totalToDos > 0 ? Math.round(completedToDos / totalToDos * 100) : 0;     // Calculamos el porcentage de los ToDos que se han completado
 

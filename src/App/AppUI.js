@@ -11,6 +11,7 @@ import { Modal } from '../Modal';
 import { Footer } from '../Footer';
 import { ToDoForm } from '../ToDoForm';
 import { ToDoContext } from '../ToDoContext';
+import { ToDoHeader } from '../ToDoHeader';
 
 function AppUI() {
   const {
@@ -21,15 +22,26 @@ function AppUI() {
     deleteToDo,
     openModal,
     setOpenModal,
-    validatingToDo
-  } = React.useContext(ToDoContext);                                            // Importamos los States y props que vamos a usar en la lógica de la UI
+    validatingToDo,
+    completedToDos,
+    totalToDos,
+    searchValue,
+    setSearchValue
+  } = React.useContext(ToDoContext);                                            // Importamos los States y props que vamos a usar en la lógica de la UI, ahora este useContext es el unico que vamos a hacer a traves del proyecto ya que aplicamos una buena Composición de Componentes
 
   return (                                                                      // Esto es lo que retorna nuestro Componente, son sus elementos internos, NO ES UN COMPONENTE, lo de abajo NO ES HTML, es JSX una sintaxis que facilita la lectura de código y luego se reenderiza a HTML clásico
-    <>                                                                        { /* Forma mas corta de envolver varios componentes y reederizarlos juntos */ }
+    <>                                                                          { /* Forma mas corta de envolver varios componentes y reederizarlos juntos */ }
     <h1>To-Do's Goals</h1>
-      <ToDoCounter />
-      <ToDoSearch />
-        
+      <ToDoHeader>                                                              { /* Creamos un nuevo Componente <ToDoHeader> para ya no usar React Context en multiples Componentes. Esto lo logramos al hacer una buen 'Composición de Componentes'*/}
+        <ToDoCounter 
+          completedToDos={completedToDos}
+          totalToDos={totalToDos}
+        />
+        <ToDoSearch 
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+        />  
+      </ToDoHeader>        
       <ToDoList>
         { loading && (
           <>

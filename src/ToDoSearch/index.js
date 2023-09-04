@@ -1,13 +1,8 @@
 import React from 'react';
 import './ToDoSearch.css';
-import { ToDoContext } from '../ToDoContext';
 import searchIcon from "../Assets/search-icon.svg";
 
-function ToDoSearch() {
-  const {
-    searchValue,
-    setSearchValue
-  } = React.useContext(ToDoContext);
+function ToDoSearch({ searchValue, setSearchValue }) {
 
   return(
     <div className='search-container'>
