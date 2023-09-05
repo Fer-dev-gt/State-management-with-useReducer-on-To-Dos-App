@@ -50,9 +50,14 @@ function App() {                                                                
         error={error}                                                         // Mandamos los States como propiedades que seran usados para la lógica del Render dentro del Componenete ToDoList
         loading={loading}
         searchedToDos={searchedToDos}
+        searchText={searchValue}
+        totalToDos={totalToDos}
 
         onError={() => <ToDosError />}                                        // Ya no haremos esta lógica acá como una Render Function, en su lugar vamos a declarar una Render Prop para que esta función se ejecute dentro del Componente al que se envia
         onEmptyToDos={() => <EmptyToDos />}                                   
+        onEmptySearchResults={(searchText) => 
+          <p>No hay resultados para: {searchText}</p>
+        }
         onLoading={() =>                                                      // Dentro de una Render Prop podemo mandar a que se Renderizen varios Components de una vez siempre y cuando este envuelta en un React.Frangmet o <></>
         <>
           <ToDosLoading />
@@ -60,16 +65,26 @@ function App() {                                                                
           <ToDosLoading />
         </> }
 
-        render={toDo => (                                                     // Creamos la propiedad 'render' que se engargara de Reenderizar cada Componente que tiene adentro segun el Array con el método map que retorna y muestra los ToDos que fueron buscados en el buscador, si el buscador esta vacío muestra todo los ToDos guardados
+        // render={toDo => (                                                     // Creamos la propiedad 'render' que se engargara de Reenderizar cada Componente que tiene adentro segun el Array con el método map que retorna y muestra los ToDos que fueron buscados en el buscador, si el buscador esta vacío muestra todo los ToDos guardados
+        //   <ToDoItem 
+        //     key={ toDo.text } 
+        //     text={ toDo.text }                                                // Muestra el texto del ToDo correspondiente
+        //     completed={ toDo.completed }                                   
+        //     onComplete={ () => completeToDo(toDo.text) }                      // Guardamos la función que ejecutará el completado de un ToDo, recibe como parámetro el texto del ToDo para poder ubicarlo en el Array de Object
+        //     onDelete={ () => deleteToDo(toDo.text) }                          // Guardamos la función que ejecutará la elinación de un Todo, recibe como parámetro el texto del ToDo para poder ubicarlo en el Array de Object
+        //   />
+        // )}
+      >
+      {toDo => (                                                     
           <ToDoItem 
             key={ toDo.text } 
-            text={ toDo.text }                                                // Muestra el texto del ToDo correspondiente
+            text={ toDo.text }                                                
             completed={ toDo.completed }                                   
-            onComplete={ () => completeToDo(toDo.text) }                      // Guardamos la función que ejecutará el completado de un ToDo, recibe como parámetro el texto del ToDo para poder ubicarlo en el Array de Object
-            onDelete={ () => deleteToDo(toDo.text) }                          // Guardamos la función que ejecutará la elinación de un Todo, recibe como parámetro el texto del ToDo para poder ubicarlo en el Array de Object
+            onComplete={ () => completeToDo(toDo.text) }                     
+            onDelete={ () => deleteToDo(toDo.text) }                         
           />
-        )}
-      />
+        )}  
+      </ToDoList>
 
       <CreateToDoButton
         setOpenModal={setOpenModal}
