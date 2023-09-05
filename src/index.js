@@ -10,22 +10,28 @@ function App(props){
   );
 }
 
-function withWhatever(WrappedComponent) {
-  return function ComponenteDeVerdad(props) {
-    return(
-      <>
-        <WrappedComponent {...props}/>                                {/* Destrucuramos las props del Componente que es enviado en como parámetro */}
-        <p>Estamos acompañando al WrappedComponent</p>
-      </>
-    )
+function AppwithSaludo(WrappedComponent) {
+  return function WrappedComponentWithSaludo(saludo) {
+    return function ComponenteDeVerdad(props) {
+      return(
+        <>
+          <WrappedComponent {...props} saludo={saludo}/>                                {/* Destrucuramos las props del Componente que es enviado en como parámetro */}
+          <p>Estamos acompañando al WrappedComponent</p>
+        </>
+      )
+    }
   }
 }
   
-const AppWithWhatever = withWhatever(App);                             // Ejecutamos la HOC y nos devuelve un Componente
+const AppWithSaludo = AppwithSaludo(App)('Weeeeeenaaaas');                             // Ejecutamos la HOC y nos devuelve un Componente
+const AppwithSaludo2 =AppwithSaludo(App)('Buenass');
+const AppwithSaludo3 =AppwithSaludo(App)('Buenass amigos');
 
 const root = ReactDOM.createRoot(document.getElementById('root'));     // Creamos un Root para React
 // root.render(<App />);                                               // Renderizamos el Componente 'App' dentro del 'root' que creamos
 
-root.render(<AppWithWhatever saludo="Buenas Tarde" nombre="Fernando"
-
-/>)
+root.render(<React.Fragment>
+  <AppWithSaludo nombre={"Alasdfasdfaex"} />
+  <AppwithSaludo2 nombre={"Alex"} />
+  <AppwithSaludo3 nombre={"jose"} />
+</React.Fragment>)
