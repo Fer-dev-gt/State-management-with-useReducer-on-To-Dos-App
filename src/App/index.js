@@ -45,19 +45,22 @@ function App() {                                                                
           setSearchValue={setSearchValue}
         />  
       </ToDoHeader>        
-      <ToDoList>
-        {loading && (
-          <>
-            <ToDosLoading/>
-            <ToDosLoading/>
-            <ToDosLoading/>
-          </>
-        )}
 
-        { error && <ToDosError/> }
-        { (!loading && searchedToDos === 0) && <EmptyToDos/> }                { /* Mostramos un mensaje donde decimos que no hay ningun ToDo creado, se muestra si no estamos en estado de 'loading' y 'searchedToDos es igual a 0' */ }
+      <ToDoList                                                               // Ahora en vez de imprementar Render Functions para decidir la logica del render ahora usaremos Render Props para que dentro del Componente <ToDolist> se decida que se va a hace render
+        error={error}                                                         // Mandamos los States como propiedades que seran usados para la lógica del Render dentro del Componenete ToDoList
+        loading={loading}
+        searchedToDos={searchedToDos}
 
-        {searchedToDos.map(toDo => (                                          // Retorna y muestra los ToDos que fueron buscados en el buscador, si el buscador esta vacío muestra todo los ToDos guardados
+        onError={() => <ToDosError />}                                        // Ya no haremos esta lógica acá como una Render Function, en su lugar vamos a declarar una Render Prop para que esta función se ejecute dentro del Componente al que se envia
+        onEmptyToDos={() => <EmptyToDos />}                                   
+        onLoading={() =>                                                      // Dentro de una Render Prop podemo mandar a que se Renderizen varios Components de una vez siempre y cuando este envuelta en un React.Frangmet o <></>
+        <>
+          <ToDosLoading />
+          <ToDosLoading />
+          <ToDosLoading />
+        </> }
+
+        render={toDo => (                                                     // Creamos la propiedad 'render' que se engargara de Reenderizar cada Componente que tiene adentro segun el Array con el método map que retorna y muestra los ToDos que fueron buscados en el buscador, si el buscador esta vacío muestra todo los ToDos guardados
           <ToDoItem 
             key={ toDo.text } 
             text={ toDo.text }                                                // Muestra el texto del ToDo correspondiente
@@ -65,8 +68,8 @@ function App() {                                                                
             onComplete={ () => completeToDo(toDo.text) }                      // Guardamos la función que ejecutará el completado de un ToDo, recibe como parámetro el texto del ToDo para poder ubicarlo en el Array de Object
             onDelete={ () => deleteToDo(toDo.text) }                          // Guardamos la función que ejecutará la elinación de un Todo, recibe como parámetro el texto del ToDo para poder ubicarlo en el Array de Object
           />
-        ))}
-      </ToDoList>
+        )}
+      />
 
       <CreateToDoButton
         setOpenModal={setOpenModal}
