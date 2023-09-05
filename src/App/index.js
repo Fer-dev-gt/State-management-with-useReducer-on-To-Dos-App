@@ -35,14 +35,16 @@ function App() {                                                                
   return (                                                                      // Esto es lo que retorna nuestro Componente, son sus elementos internos, NO ES UN COMPONENTE, lo de abajo NO ES HTML, es JSX una sintaxis que facilita la lectura de código y luego se reenderiza a HTML clásico
     <>                                                                          { /* Aqui vamos a implementar la Composición de Componentes para que ya no tengamos problemas de 'props drilling' o usar React Context, pasamos los valores directamente a los Componentes que los van a consumir */ }
       <h1>To-Do's Goals</h1>
-      <ToDoHeader>                                                              { /* Creamos un nuevo Componente <ToDoHeader> para ya no usar React Context en multiples Componentes. Esto lo logramos al hacer una buen 'Composición de Componentes'*/}
+      <ToDoHeader>                                                              { /* Creamos un nuevo Componente para ya no usar React Context en multiples Componentes. Esto lo logramos al hacer una buen 'Composición de Componentes'*/}
         <ToDoCounter 
           completedToDos={completedToDos}
           totalToDos={totalToDos}
+          loading={loading}
         />
         <ToDoSearch 
           searchValue={searchValue}
           setSearchValue={setSearchValue}
+          loading={loading}
         />  
       </ToDoHeader>        
 

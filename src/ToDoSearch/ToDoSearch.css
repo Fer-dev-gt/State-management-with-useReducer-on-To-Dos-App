@@ -5,6 +5,9 @@
 .ToDoSearch:focus {
   outline-color: #d92e7f;
 } 
+.ToDoSearch:disabled {
+  opacity: 25%;
+} 
 
 .search-container {
   position: relative;

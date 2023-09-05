@@ -5,7 +5,7 @@ function ToDoHeader({ children }) {
     <header>
       {children}
     </header>
-  )
+  );
 }
 
 export { ToDoHeader };

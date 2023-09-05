@@ -7,6 +7,9 @@
   width: calc(100% - 62px);
   max-width: 650px;
 }
+.ToDoCounter--loading {
+  opacity: 25%;
+} 
 .bold {
   font-weight: bold;
 }
@@ -18,6 +21,9 @@
   margin: 12px auto;
   border: 2px solid;
   border-radius: 10px;
+}
+.bar--loading{
+  opacity: 25%;
 }
 .progress {
   height: 100%;
