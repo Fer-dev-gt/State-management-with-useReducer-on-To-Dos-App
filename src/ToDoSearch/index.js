@@ -2,7 +2,7 @@ import React from 'react';
 import './ToDoSearch.css';
 import searchIcon from "../Assets/search-icon.svg";
 
-function ToDoSearch({ searchValue, setSearchValue }) {
+function ToDoSearch({ searchValue, setSearchValue }) {                                  // Antes estos States y setStates los obteniamos de un React Context ahora los pasamos como props gracias a que aplicamos la Composición de Componentes
 
   return(
     <div className='search-container'>

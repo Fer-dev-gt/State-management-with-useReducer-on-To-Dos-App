@@ -25,7 +25,6 @@ function useLocalStorage(itemName, initialValue){                               
     }, 500)
   }, []);
 
-  
   const saveItem = (newItem) => {                                                 // Función para guardar un nuevo ToDo en el LocalStorage y actualizar el State
     localStorage.setItem(itemName, JSON.stringify(newItem))                       // Guardamos el valor del 'newItem' en formato 'JSON.stringify' al Object con nombre 'itenName' ('ToDos_V1')
     setItem(newItem)                                                              // Actualizamos el State con el valor de 'newItem'

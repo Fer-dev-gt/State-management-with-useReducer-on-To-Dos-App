@@ -1,17 +1,15 @@
 import React from 'react';
-import { ToDoContext } from '../ToDoContext';
 import './ToDoForm.css';
 import star from './star.png';
 import soundFileAdded from './added.mp3'
 
-function ToDoForm() {
-  const {
+function ToDoForm({                                                     // Ya no usamos React Context ahora pasamos las props por Composición de Componentes
     addToDo,
     setOpenModal,
     validatingToDo,
     newToDoValue,
     setNewToDoValue,
-  } = React.useContext(ToDoContext);
+    }) {
 
   const audioAdded = new Audio(soundFileAdded);                         // Audio para cuando se agrega un nuevo ToDo
   

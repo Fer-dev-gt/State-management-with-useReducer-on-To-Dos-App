@@ -1,7 +1,7 @@
 import React from 'react';
 import './ToDoCounter.css';                                             
 
-function ToDoCounter({ completedToDos, totalToDos }) {                                                                          // Destructuramos la importacion de los 'props', 'props' es un Objeto que tiene distintas propiedades
+function ToDoCounter({ completedToDos, totalToDos }) {                                            // Destructuramos la importacion de los 'props', 'props' es un Objeto que tiene distintas propiedades, antes usamos React Context pero ahora usaremos Composición de Componentes
 
   const progressPercent = totalToDos > 0 ? Math.round(completedToDos / totalToDos * 100) : 0;     // Calculamos el porcentage de los ToDos que se han completado
 
