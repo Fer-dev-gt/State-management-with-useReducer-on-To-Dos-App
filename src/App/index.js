@@ -12,7 +12,7 @@ import { Modal } from '../Modal';
 import { Footer } from '../Footer';
 import { ToDoForm } from '../ToDoForm';
 import { ToDoHeader } from '../ToDoHeader';
-import { ChangeAlertWithStorageListener } from '../ChangeAlert';
+import { ChangeAlert } from '../ChangeAlert';
 
 function App() {                                                                // Esto es un Componente de React, por convención se escriben con mayuscula
   const {
@@ -106,7 +106,7 @@ function App() {                                                                
         </Modal>
       )}
 
-      <ChangeAlertWithStorageListener 
+      <ChangeAlert 
         sincronize={sincronizedToDos}
       />
       <Footer />
