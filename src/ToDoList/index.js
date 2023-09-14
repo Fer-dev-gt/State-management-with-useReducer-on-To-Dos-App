@@ -11,9 +11,9 @@ function ToDoList(props) {                                                      
       {(!props.loading && !props.totalToDos) && props.onEmptyToDos()}             {/* Verificamos si no estamos haciendo 'loading' y si no existe ToDos ya creados, si las 2 son ciertas ejecutamos la Render Prop 'onEmptyToDos' que reenderiza el Componente de <EmptyToDos>*/}
 
       {(!!props.totalToDos && !props.searchedToDos.length) && props.onEmptySearchResults(props.searchText)}     {/* Validamos que ningun texto en el Search coincida con alguno de nuestros ToDos en el 'searchedToDos' y que exista al menos un To Do creado, si ese es el caso entonces mostrasmos un Componente que indique que no hay resultados para su busqueda y el texto de lo que queria buscar*/}
-
+      
       <ul className='ToDoList'>                                                   {/* Muesta en formato de 'unordered list' los ToDoItem que corresponden mostrar, cual sea esos ToDoItem vendran dentro de 'children' */}
-        {props.searchedToDos.map(renderFuction)}                                     {/* Por cada elemento de nuestro Array 'searchedToDos' vamos a "ejecutar" la variable 'renderFuction' que adentro contiene una funcion que Reederiza los Componenetes <ToDoItem>, el valor de la variable lo podemos sustituir con un: {props.searchedTodos.map(props.render || props.children)} */}
+        {(!props.loading && !props.error) && props.searchedToDos.map(renderFuction)}                                     {/* Por cada elemento de nuestro Array 'searchedToDos' vamos a "ejecutar" la variable 'renderFuction' que adentro contiene una funcion que Reederiza los Componenetes <ToDoItem>, el valor de la variable lo podemos sustituir con un: {props.searchedTodos.map(props.render || props.children)} */}
       </ul>
     </section>
   );

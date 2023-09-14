@@ -12,6 +12,7 @@ import { Modal } from '../Modal';
 import { Footer } from '../Footer';
 import { ToDoForm } from '../ToDoForm';
 import { ToDoHeader } from '../ToDoHeader';
+import { ChangeAlertWithStorageListener } from '../ChangeAlert';
 
 function App() {                                                                // Esto es un Componente de React, por convención se escriben con mayuscula
   const {
@@ -30,6 +31,7 @@ function App() {                                                                
     addToDo,
     newToDoValue,
     setNewToDoValue,
+    sincronizedToDos
   } = useToDos();                                                               // Importamos los States, funciones y props que vamos a usar en la lógica de la UI de un Custom Hook y ya no seguiremos usando el React Context
 
   return (                                                                      // Esto es lo que retorna nuestro Componente, son sus elementos internos, NO ES UN COMPONENTE, lo de abajo NO ES HTML, es JSX una sintaxis que facilita la lectura de código y luego se reenderiza a HTML clásico
@@ -103,6 +105,10 @@ function App() {                                                                
           />
         </Modal>
       )}
+
+      <ChangeAlertWithStorageListener 
+        sincronize={sincronizedToDos}
+      />
       <Footer />
     </>
   );

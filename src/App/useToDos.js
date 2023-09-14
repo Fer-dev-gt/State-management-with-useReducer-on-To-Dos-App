@@ -6,6 +6,7 @@ function useToDos() {                                                           
   const {
     item: toDos,                                                                          // Array de items guardados en LocalStorage le cambiamos el nombre a 'toDos'
     saveItem: saveToDos,                                                                  // Le cambiamos el nombre al método 'saveItem' a 'saveToDos'
+    sincronizeItem: sincronizedToDos,
     loading,                                                                            
     error
   } = useLocalStorage('ToDos_V1', []);                                                    // Usamos este Hook para obtener los Items de ToDos guardados en LocalStorage, le mandamos el nombre del Object que buscamos y un Array vacio como valor inicial si no existen datos registrados
@@ -80,7 +81,8 @@ function useToDos() {                                                           
     validStatus,
     setValidStatus,
     newToDoValue,
-    setNewToDoValue
+    setNewToDoValue,
+    sincronizedToDos
   };
 }
 
