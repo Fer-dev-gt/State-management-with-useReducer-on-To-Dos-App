@@ -16,9 +16,9 @@ function useToDos() {                                                           
   const [newToDoValue, setNewToDoValue] = React.useState('');
   const [validStatus, setValidStatus] = React.useState(false);
   
+  // ESTOS SON ESTADOS DERIVADOS, se calculan a partir de otros estados
   const completedToDos = toDos.filter(toDo => !!toDo.completed).length;                   // Usamos el método filter y lenght (con doble !! para que sean boolenas) para obtener el número de To Do's completadas
   const totalToDos = toDos.length;                                                        // Guardamos el valor de cuantos item ToDo tenemos guardados en el Array
-  
   const searchedToDos = toDos.filter(toDo => toDo.text.toLowerCase().includes(            // Guardamos en un Array los ToDos que coinciden con un 'searchValue'
     searchValue.toLowerCase())
   );
@@ -48,7 +48,6 @@ function useToDos() {                                                           
     const newToDos = [...toDos];                                                          // Creamos una copia del Array 'ToDos' usando destructuración [...]
     const toDoIndex = newToDos.findIndex( (toDo) => toDo.text === text );                 // Encontramos el index del elemento del Array de ToDos que queremos cambiar su estado de 'completed'
     const toDo = newToDos[toDoIndex]                                                      // Obtenemos el Object del Array al usar el 'toDoIndex'
-
     newToDos[toDoIndex].completed = !newToDos[toDoIndex].completed;                       // Cambiamos el valor de 'completed' ya sea a false o true dependiendo de su valor anterior, es un 'toggle'
     newToDos.splice(toDoIndex, 1)                                                         // Usando el método de Arrays '.splice()' removemos el Object del ToDo del Array 'newToDos'
 
@@ -59,7 +58,6 @@ function useToDos() {                                                           
   const deleteToDo = (text) => {                                                          // Función que crea un nuevo Array de los toDos sin el ToDo que le dimos X para eliminar
     const newToDos = [...toDos];                                                          // Copiamos el Array de Objects sin afectar el valor por referencia
     const toDoIndex = newToDos.findIndex( (toDo) => toDo.text === text );                 // Encontramos y guardamos el Index del ToDo que queremos eliminar
-
     newToDos.splice(toDoIndex, 1);                                                        // Quitamos el ToDo seleccionado con la X del Array de ToDos que luego va a actualizar el State
     saveToDos(newToDos);                                                                  // Ejecutamos la función para guardar el nuevo Array de ToDos sin el ToDo eliminado y actualizamos el State
   };  
