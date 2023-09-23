@@ -62,26 +62,31 @@ function useToDos() {                                                           
     saveToDos(newToDos);                                                                  // Ejecutamos la función para guardar el nuevo Array de ToDos sin el ToDo eliminado y actualizamos el State
   };  
 
-  return {                                                                                // En vez de retornar los valores, States, y funciones como un 'value' del Provider de un Context, ahora simplemente los devolvemos como un Objeto normal para que el Componente App lo consuma haciendo Composición de Componentes
-    loading, 
+
+  // Vamos a crear 2 Objects, uno para los valores del State y otro para las funciones que modifican el State, estos lo vamos a exportar dentro de otro Object, esto con la meta de que el Componente App sea mas legible y no tenga tanto código cuando importe este Custom Hook
+  const states = {                                                                        // Definimos un Object con los valores del State que el Componente App va a consumir
+    loading,
     error,
-    completedToDos, 
-    totalToDos, 
+    totalToDos,
+    completedToDos,
     searchValue,
-    setSearchValue,
-    searchedToDos, 
-    addToDo,
-    completeToDo, 
-    deleteToDo,
+    searchedToDos,
     openModal,
-    setOpenModal,
     validatingToDo,
-    validStatus,
-    setValidStatus,
-    newToDoValue,
+    newToDoValue
+  };
+
+  const stateUpdaters = {                                                                 // Defininmos un Object con las funciones que modifican el State que el Componente App va a consumir
+    setSearchValue,
+    addToDo,
+    completeToDo,
+    deleteToDo,
+    setOpenModal,
     setNewToDoValue,
     sincronizedToDos
   };
+
+  return { states, stateUpdaters };                                                       // Retornamos un Object con los valores del State y otro Object con las funciones que modifican el State
 }
 
-export { useToDos };                                                                    // Ya no vamos a retornar el context ahora será un Custom Hook nada mas
+export { useToDos };                                                                      // Ya no vamos a retornar el context ahora será un Custom Hook nada mas

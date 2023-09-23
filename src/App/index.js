@@ -14,25 +14,30 @@ import { ToDoForm } from '../ToDoForm';
 import { ToDoHeader } from '../ToDoHeader';
 import { ChangeAlertWithStorageListener } from '../ChangeAlert';
 
-function App() {                                                                // Esto es un Componente de React, por convención se escriben con mayuscula
-  const {
-    loading, 
+function App() {                                                                
+  const { states, stateUpdaters } = useToDos();                                 // Importamos 2 Objects que contienen los valores del State y las funciones que modifican el State, estos Objects los obtenemos del Custom Hook 'useToDos()'.Ahora en vez de traer a todos los States y StateUpdaters todos juntos en un solo Object los vamos a traer por separado usando destructuración dentro de un Object que tiene otros 2 Objects dentro, uno con los valores del State y otro con las funciones que modifican el State      
+  
+  const {                                                                       // Desestructuramos los valores del State para poder usarlos sin escribir 'states.' antes de cada uno
+    loading,
     error,
-    searchedToDos,
-    completeToDo, 
-    deleteToDo,
-    openModal,
-    setOpenModal,
-    validatingToDo,
-    completedToDos,
     totalToDos,
+    completedToDos,
     searchValue,
+    searchedToDos,
+    openModal,
+    validatingToDo,
+    newToDoValue
+  } = states;
+
+  const {                                                                       // Desestructuramos las funciones que modifican el State para poder usarlas sin escribir 'stateUpdaters.' antes de cada una
     setSearchValue,
     addToDo,
-    newToDoValue,
+    completeToDo,
+    deleteToDo,
+    setOpenModal,
     setNewToDoValue,
     sincronizedToDos
-  } = useToDos();                                                               // Importamos los States, funciones y props que vamos a usar en la lógica de la UI de un Custom Hook y ya no seguiremos usando el React Context
+  } = stateUpdaters;
 
   return (                                                                      // Esto es lo que retorna nuestro Componente, son sus elementos internos, NO ES UN COMPONENTE, lo de abajo NO ES HTML, es JSX una sintaxis que facilita la lectura de código y luego se reenderiza a HTML clásico
     <>                                                                          { /* Aqui vamos a implementar la Composición de Componentes para que ya no tengamos problemas de 'props drilling' o usar React Context, pasamos los valores directamente a los Componentes que los van a consumir */ }
