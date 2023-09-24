@@ -1,5 +1,5 @@
 <h1 align="center" id="title">To Do App with useReducer</h1>
-Here I implemented useReducer
+This is another version of my main To Do App, here we manage our states by using useReducer, action types and action creator to have more declarative code 
 
 Try it yourself! https://fer-dev-gt.github.io/State-management-with-useReducer-on-To-Dos-App/
 
@@ -18,6 +18,8 @@ Try it yourself! https://fer-dev-gt.github.io/State-management-with-useReducer-o
 - [React Documentation](#Getting-Started-with-Create-React-App)
 
 ## Demo and Feautures
+<img width="720" alt="Screenshot 2023-09-24 at 16 16 57" src="https://github.com/Fer-dev-gt/State-management-with-useReducer-on-To-Dos-App/assets/119085740/c98475bf-2e38-4e5c-a97f-61579abe15c1">
+<p>Here you can see the way we managed our states by using reducers, action types and action creator</p>
 
 
 ## Installation Steps:
